@@ -20,26 +20,32 @@ public class BasicCheckoutService {
     private final Logger logger = LoggerFactory.getLogger(Consumer.class);
     ObjectMapper mapperObj = new ObjectMapper();
 
-    @KafkaListener(topics = "users", groupId = "group_id")
+    @KafkaListener(topics = "checkout", groupId = "group_id")
+    //@KafkaListener(topics = "topico-orden", groupId = "group_id")
     public void consume(final String transaccion) throws IOException {
 
         logger.info(String.format("Consuming -> %s", transaccion));
 
-        JsonNode objTransaccion = mapperObj.readTree(transaccion);
-        String cardNumber = objTransaccion.get("card").asText();
-        String expiryDate = objTransaccion.get("expiry_date").asText();
-        Integer orderNumber = objTransaccion.get("order").asInt();
+        //JsonNode objTransaccion = mapperObj.readTree(transaccion);
+        //String cardNumber = objTransaccion.get("card").asText();
+        //String expiryDate = objTransaccion.get("expiry_date").asText();
+        //Integer orderNumber = objTransaccion.get("order").asInt();
 
-        Checkout checkout = new Checkout(cardNumber, expiryDate, orderNumber);
-        CheckoutResponseDTO sendCheckout = new CheckoutResponseDTO(checkout.getCard(), checkout.getExpiry_date(), checkout.getOrder());
+        //logger.info(String.format("Number -> %s", cardNumber));
+        //logger.info(String.format("Expiry -> %s", expiryDate));
+        //logger.info(String.format("Orden -> %s", orderNumber));
 
-        final String uri = "http://localhost:8080/api/touresbalon/pasarela/validating/"+sendCheckout.getCard()+"?expiry_date="+sendCheckout.getExpiry_date();
+        //Checkout checkout = new Checkout(cardNumber, expiryDate, orderNumber);
+        //CheckoutResponseDTO sendCheckout = new CheckoutResponseDTO(checkout.getCard(), checkout.getExpiry_date(), checkout.getOrder());
 
-        RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri, String.class);
+        //final String uri = "http://localhost:8182/api/touresbalon/pasarela/validating/"+sendCheckout.getCard()+"?expiry_date="+sendCheckout.getExpiry_date();
+        //final String uri = "http://localhost:8182/api/touresbalon/pasarela/validating/"+cardNumber+"?expiry_date="+expiryDate;
 
-        System.out.println(result);
-        JsonObject jsonObject = new JsonParser().parse(result).getAsJsonObject();
-        System.out.println(jsonObject.get("message"));
+        //RestTemplate restTemplate = new RestTemplate();
+        //String result = restTemplate.getForObject(uri, String.class);
+
+        //System.out.println(result);
+        //JsonObject jsonObject = new JsonParser().parse(result).getAsJsonObject();
+        //System.out.println(jsonObject.get("message"));
     }
 }

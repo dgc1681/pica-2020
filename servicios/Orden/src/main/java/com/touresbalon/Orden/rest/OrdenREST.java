@@ -27,7 +27,7 @@ public class OrdenREST {
         orden.setOrder(id_order);
 
         OrdenResponseDTO transaccion = new OrdenResponseDTO(orden.getCard(), orden.getExpiry_date(), orden.getOrder());
-
+        System.out.println("Hola "+card);
         this.producer.sendMessage(transaccion);
     }
 }
