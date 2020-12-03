@@ -11,6 +11,10 @@ bin/zookeeper-server-start.sh config/zookeeper.properties
 
 bin/kafka-server-start.sh config/server.properties
 
+Maven
+
+https://maven.apache.org/install.html
+
 ./mvnw clean package
 
 ./mvnw spring-boot:run
