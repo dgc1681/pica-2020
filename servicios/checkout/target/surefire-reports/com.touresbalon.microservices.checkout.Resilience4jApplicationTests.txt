@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.touresbalon.microservices.checkout.Resilience4jApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.945 s - in com.touresbalon.microservices.checkout.Resilience4jApplicationTests
